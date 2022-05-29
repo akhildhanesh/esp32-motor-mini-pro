@@ -50,7 +50,7 @@ void loop(){
 
    if (analogGas >= 400 && analogGas < 800) {
      HTTPClient http;
-     String serverPath = "http://192.168.0.217:3000/gas-sensor/" + String(analogGas) + String(digitalRead(motor));
+     String serverPath = "http://192.168.0.217:3000/gas-sensor/" + String(analogGas);
      http.begin(serverPath.c_str());
      int httpResponseCode = http.GET();  
    } else if (analogGas >= 800) {
