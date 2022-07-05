@@ -1,8 +1,8 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 
-const char* ssid     = "******";
-const char* password = "******";
+const char* ssid     = "9R";
+const char* password = "Nginx123";
 
 const int gasAnalog = 34;
 
@@ -47,16 +47,18 @@ void loop(){
 
 //   int analogGas = 999;
    int analogGas = analogRead(gasAnalog);
+  Serial.println(analogGas);
+   
 
-   if (analogGas >= 400 && analogGas < 800) {
+   if (analogGas >= 3000 && analogGas < 3100) {
      HTTPClient http;
      String serverPath = "http://192.168.0.217:3000/gas-sensor/" + String(analogGas);
      http.begin(serverPath.c_str());
      int httpResponseCode = http.GET();  
-   } else if (analogGas >= 800) {
+   } else if (analogGas >= 3100) {
      digitalWrite(motor, HIGH);
      HTTPClient http;
-     String serverPath = "http://192.168.0.217:3000/esp32/⚠Gas Intensity is High⚠ =>" + String(analogGas) + "Opening the Window";
+     String serverPath = "http://192.168.0.217:3000/esp32/20Intensity%20is%20High=>%20Opening%20the%20Window";
      http.begin(serverPath.c_str());
      int httpResponseCode = http.GET();
    }
